@@ -153,31 +153,33 @@ inline bool isExtendedLatinCharacter(wchar_t wchar)
 
 inline bool isCyrillicCharacter(wchar_t wchar)
 {
-    if (wchar >= 0x0410 && wchar <= 0x044F)                  // CYRILLIC CAPITAL LETTER A - CYRILLIC SMALL LETTER YA
+    if (wchar >= 0x0410 && wchar <= 0x0429)                  // А-Щ
     {
         return true;
     }
-    if (wchar == 0x0401 || wchar == 0x0451)                  // CYRILLIC CAPITAL LETTER IO, CYRILLIC SMALL LETTER IO
+    if (wchar >= 0x0430 && wchar <= 0x0449)                  // а-щ
     {
         return true;
     }
-    // Перевірка для літери І і
-    if (wchar == 0x0406 || wchar == 0x0456)                  // CYRILLIC CAPITAL LETTER І, CYRILLIC SMALL LETTER і
+    if (wchar == 0x042C || wchar == 0x044C ||
+        wchar == 0x042E || wchar == 0x044E ||
+        wchar == 0x042F || wchar == 0x044F)      // Ь ь Ю ю Я я
     {
         return true;
     }
-    // Перевірка для літери Ї ї
-    if (wchar == 0x0407 || wchar == 0x0457)                  // CYRILLIC CAPITAL LETTER Ї, CYRILLIC SMALL LETTER ї
+    if (wchar == 0x0406 || wchar == 0x0456)                  // І і
     {
         return true;
     }
-    // Перевірка для літери Є є
-    if (wchar == 0x0404 || wchar == 0x0454)                  // CYRILLIC CAPITAL LETTER Є, CYRILLIC SMALL LETTER є
+    if (wchar == 0x0407 || wchar == 0x0457)                  // Ї ї
     {
         return true;
     }
-    // Перевірка для літери Ґ ґ
-    if (wchar == 0x0490 || wchar == 0x0491)                  // CYRILLIC CAPITAL LETTER Ґ, CYRILLIC SMALL LETTER ґ
+    if (wchar == 0x0404 || wchar == 0x0454)                  // Є є
+    {
+        return true;
+    }
+    if (wchar == 0x0490 || wchar == 0x0491)                  // Ґ ґ
     {
         return true;
     }
