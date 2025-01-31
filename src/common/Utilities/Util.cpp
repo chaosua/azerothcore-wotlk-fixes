@@ -416,24 +416,24 @@ std::wstring GetMainPartOfName(std::wstring const& wname, uint32_t declension)
     static std::wstring const ka_End = L"\u043A\u0430";  // -ка
     static std::wstring const ky_End = L"\u043A\u0438";  // -ки
     static std::wstring const ko_End = L"\u043A\u043E";  // -ко
-    static std::wstring const koju_End = L"\u043A\u043E\u044E";  // -кою
+    static std::wstring const koyu_End = L"\u043A\u043E\u044E";  // -кою
     static std::wstring const ku_End = L"\u043A\u0443";  // -ку
     static std::wstring const tsi_End = L"\u0446\u0456"; // -ці
 
     // Масив закінчень для кожного відмінка
     static std::array<std::array<std::wstring const*, 11>, 6> const dropEnds = { {
-        // ка         ко         а           е           я           у         є          і          ь          й          о
-        { &ka_End,  &ko_End,   &a_End,     &e_End,    &ya_End,   &u_End,     &ye_End,   &i_End,     &y_end,    &j_End,    &o_End },  // 1-й відмінок (називний)
-        // а          и           ї           я         ки
-        { &a_End,   &i_end,    &yi_End,    &ya_End,   &ky_End,   nullptr,    nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 2-й відмінок (родовий)
-        //   ю         у          ї          зі         еві         єві        ці           ові
-        { &yu_End,   &u_End,   &yi_End,    &zyi_End,  &evi_End,  &ievi_End,  &tsi_End,  &ovi_End,  nullptr,   nullptr,   nullptr },  // 3-й відмінок (давальний)
-        // у           я           ю         а          ку   
-        { &u_End,   &ya_End,   &yu_End,    &a_End,    &ku_End,    nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 4-й відмінок (знахідний)
-        //  ою         ом         ею          єю        єм         кою
-        { &oyu_End,  &om_End,   &eyu_End,  &iey_End,  &yem_End,   &koju_End, nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 5-й відмінок (орудний)
-        //   і         ї          ю          у          єві          ці
-        { &i_End,   &yi_End,    &yu_End,   &u_End,    &ievi_End,  &tsi_End,  nullptr,   nullptr,   nullptr,   nullptr,   nullptr }   // 6-й відмінок (місцевий)
+        // ка         ко         а           е           я           у         є          і           ь          й          о
+        { &ka_End,  &ko_End,   &a_End,     &e_End,    &ya_End,    &u_End,     &ye_End,   &i_End,     &y_end,    &j_End,    &o_End },  // 1-й відмінок (називний)
+        //  ки         а          и           ї           я 
+        { &ky_End,   &a_End,   &i_end,    &yi_End,    &ya_End,    nullptr,    nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 2-й відмінок (родовий)
+        //  еві         єві        ові        ці        зі           ю          у          і          ї
+        { &evi_End, &ievi_End, &ovi_End,   &tsi_End,   &zyi_End,  &yu_End,    &u_End,    &i_End,    &yi_End,   nullptr,   nullptr },  // 3-й відмінок (давальний)
+        //  ку           я           ю         а          у   
+        { &ku_End,   &ya_End,   &yu_End,    &a_End,    &u_End,     nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 4-й відмінок (знахідний)
+        //  кою         ом         ею          єю        єм          ою
+        { &koyu_End,  &om_End,   &eyu_End,  &iey_End,  &yem_End,   &oyu_End,  nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 5-й відмінок (орудний)
+        //   єві          ці        і          ї          ю          у 
+        { &ievi_End,  &tsi_End,  &i_End,    &yi_End,   &yu_End,    &u_End,    nullptr,   nullptr,   nullptr,   nullptr,   nullptr }   // 6-й відмінок (місцевий)
     } };
 
     std::size_t const thisLen = wname.length();
