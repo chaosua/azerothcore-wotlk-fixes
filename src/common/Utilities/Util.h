@@ -161,25 +161,14 @@ inline bool isCyrillicCharacter(wchar_t wchar)
     {
         return true;
     }
-    if (wchar == 0x042C || wchar == 0x044C ||
-        wchar == 0x042E || wchar == 0x044E ||
-        wchar == 0x042F || wchar == 0x044F)      // Ь ь Ю ю Я я
-    {
-        return true;
-    }
-    if (wchar == 0x0406 || wchar == 0x0456)                  // І і
-    {
-        return true;
-    }
-    if (wchar == 0x0407 || wchar == 0x0457)                  // Ї ї
-    {
-        return true;
-    }
-    if (wchar == 0x0404 || wchar == 0x0454)                  // Є є
-    {
-        return true;
-    }
-    if (wchar == 0x0490 || wchar == 0x0491)                  // Ґ ґ
+    if (wchar == 0x042C || wchar == 0x044C || // Ь ь
+        wchar == 0x042E || wchar == 0x044E || // Ю ю
+        wchar == 0x042F || wchar == 0x044F || // Я я
+        wchar == 0x0406 || wchar == 0x0456 || // І і
+        wchar == 0x0407 || wchar == 0x0457 || // Ї ї
+        wchar == 0x0404 || wchar == 0x0454 || // Є є
+        wchar == 0x0490 || wchar == 0x0491 || // Ґ ґ
+        wchar == 0x0027) // '
     {
         return true;
     }

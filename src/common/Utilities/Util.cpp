@@ -409,28 +409,35 @@ std::wstring GetMainPartOfName(std::wstring const& wname, uint32_t declension)
     static std::wstring const yem_End = L"\u0454\u043C";   // -єм
     static std::wstring const zyi_End = L"\u0437\u0456"; // -зі
     static std::wstring const evi_End = L"\u0435\u0432\u0456";   // -еві
+    static std::wstring const ovi_End = L"\u043E\u0432\u0456";   // -ові
     static std::wstring const ievi_End = L"\u0454\u0432\u0456";   // -єві
     static std::wstring const oyu_End = L"\u043E\u044E";  // -ою
     static std::wstring const eyu_End = L"\u0454\u044E";  // -ею
+    static std::wstring const ka_End = L"\u043A\u0430";  // -ка
+    static std::wstring const ky_End = L"\u043A\u0438";  // -ки
+    static std::wstring const ko_End = L"\u043A\u043E";  // -ко
+    static std::wstring const koju_End = L"\u043A\u043E\u044E";  // -кою
+    static std::wstring const ku_End = L"\u043A\u0443";  // -ку
+    static std::wstring const tsi_End = L"\u0446\u0456"; // -ці
 
     // Масив закінчень для кожного відмінка
-    static std::array<std::array<std::wstring const*, 9>, 6> const dropEnds = { {
-        //  а         е           я           у         є          і         ь          й          о
-        { &a_End,   &e_End,    &ya_End,    &u_End,    &ye_End,   &i_End,     &y_end,    &j_End,    &o_End  },  // 1-й відмінок (називний)
-        // а          и           ї           я 
-        { &a_End,   &i_end,    &yi_End,    &ya_End,   nullptr,   nullptr,    nullptr,   nullptr,   nullptr },  // 2-й відмінок (родовий)
-        //   ю         у          ї          зі         еві         єві
-        { &yu_End,   &u_End,   &yi_End,   &zyi_End,   &evi_End,  &ievi_End,  nullptr,   nullptr,   nullptr },  // 3-й відмінок (давальний)
-        // у           я           ю         а         
-        { &u_End,   &ya_End,   &yu_End,    &a_End,    nullptr,    nullptr,   nullptr,   nullptr,   nullptr },  // 4-й відмінок (знахідний)
-        //  ою         ом         ею          єю        єм
-        { &oyu_End,  &om_End,   &eyu_End,  &iey_End,  &yem_End,   nullptr,   nullptr,   nullptr,   nullptr },  // 5-й відмінок (орудний)
-        //   і         ї          ю          у        
-        { &i_End,   &yi_End,    &yu_End,   &u_End,    nullptr,    nullptr,   nullptr,   nullptr,   nullptr }   // 6-й відмінок (місцевий)
+    static std::array<std::array<std::wstring const*, 11>, 6> const dropEnds = { {
+        // ка         ко         а           е           я           у         є          і          ь          й          о
+        { &ka_End,  &ko_End,   &a_End,     &e_End,    &ya_End,   &u_End,     &ye_End,   &i_End,     &y_end,    &j_End,    &o_End },  // 1-й відмінок (називний)
+        // а          и           ї           я         ки
+        { &a_End,   &i_end,    &yi_End,    &ya_End,   &ky_End,   nullptr,    nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 2-й відмінок (родовий)
+        //   ю         у          ї          зі         еві         єві        ці           ові
+        { &yu_End,   &u_End,   &yi_End,    &zyi_End,  &evi_End,  &ievi_End,  &tsi_End,  &ovi_End,  nullptr,   nullptr,   nullptr },  // 3-й відмінок (давальний)
+        // у           я           ю         а          ку   
+        { &u_End,   &ya_End,   &yu_End,    &a_End,    &ku_End,    nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 4-й відмінок (знахідний)
+        //  ою         ом         ею          єю        єм         кою
+        { &oyu_End,  &om_End,   &eyu_End,  &iey_End,  &yem_End,   &koju_End, nullptr,   nullptr,   nullptr,   nullptr,   nullptr },  // 5-й відмінок (орудний)
+        //   і         ї          ю          у          єві          ці
+        { &i_End,   &yi_End,    &yu_End,   &u_End,    &ievi_End,  &tsi_End,  nullptr,   nullptr,   nullptr,   nullptr,   nullptr }   // 6-й відмінок (місцевий)
     } };
 
     std::size_t const thisLen = wname.length();
-    std::array<std::wstring const*, 9> const& endings = dropEnds[declension];
+    std::array<std::wstring const*, 11> const& endings = dropEnds[declension];
     for (const std::wstring* endingPtr : endings)
     {
         if (endingPtr == nullptr)
